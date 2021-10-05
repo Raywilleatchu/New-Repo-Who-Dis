@@ -1,0 +1,47 @@
+﻿
+@{
+    ViewData["Title"] = "GetForm";
+}
+
+<style>
+    .warning {
+        font-weight: bold;
+        color: red;
+    }
+</style>
+
+<h1>Oh Man My Man It Looks Like You Just Got Directed To Another FORM</h1>
+
+<div id="message" class="warning"></div>
+<form id="myform" method="post" action="/Home/Index">
+    <label>Product Name</label><input type="text" id="nametext" name="nametext" /><br />
+    <label>Product Category</label><input type="text" id="cattext" name="cattext" /><br />
+    <label>Password:</label><input type="password" /><br />
+    <label>Confirm Password:</label><input type="password" />
+</form>
+<button id="mybutton">Submit</button>
+
+<script>
+    // This is just one way to do it. Another way is to grab the form
+    // and add a listener to its submit event.
+    function ProcessForm() {
+        let n = document.querySelector('#nametext').value;
+        let c = document.querySelector('#cattext').value;
+        if (!n || !c) {
+            //alert('Please fill in all fields.');
+            document.querySelector('#message').innerText = 'Please fill in all fields.';
+        }
+        else {
+            document.querySelector('#myform').submit();
+        }
+    }
+    function clearMessage() {
+        document.querySelector('#message').innerText = '';
+    }
+    let b = document.querySelector('#mybutton');
+    b.addEventListener('click', ProcessForm);
+    let t1 = document.querySelector('#nametext');
+    t1.addEventListener('keypress', clearMessage);
+    let t2 = document.querySelector('#cattext');
+    t2.addEventListener('keypress', clearMessage);
+</script>

@@ -1,0 +1,65 @@
+﻿
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<style>
+    .warning {
+        font-weight: bold;
+        color: red;
+    }
+</style>
+
+<h1 class="text-center"> Fill In These Fields</h1>
+<form id="signup" class="text-center" action="../Home/CheckForm">
+    <div id="message" name="message"method="post"class="warning"></div>
+    <label>First Name:</label><input type="text" id="fn" name="fn" /><br />
+    <label>Last Name:</label><input type="text" id="ln" name="ln" /><br />
+    <label>Email:</label><input type="text" id="em" name="em" /><br />
+    <label>Password:</label><input type="password" id="ps" name="ps" /><br />
+    <label>Confirm Password:</label><input type="password" id="cps" name="cps" /><br />
+</form>
+    <button id="but1" class="btn btn-secondary" style="position:relative;left:30rem"onclick="ProcessForm">Submit</button>
+
+<script>
+    function ProcessForm()
+    {
+        let fn = document.querySelector("#fn").value;
+        let ln = document.querySelector("#ln").value;
+        let em = document.querySelector("#em").value;
+        let ps = document.querySelector("#ps").value;
+        let cps = document.querySelector("#cps").value;
+
+        if (!fn || !ln || !em || !ps || !cps) {
+            document.querySelector('#message').innerText = 'Please Fill All Fields';
+        }
+        else
+        {
+            document.querySelector('#signup').submit();
+        }
+    }
+
+    function ClearMessage()
+    {
+        document.querySelector("#message").innerText = '';
+    }
+
+    let b = document.querySelector('#but1');
+    b.addEventListener('click', ProcessForm);
+
+    let fn = document.querySelector("#fn");
+    fn.addEventListener('keypress', ClearMessage);
+
+    let ln = document.querySelector("#ln");
+    ln.addEventListener('keypress', ClearMessage);
+
+    let em = document.querySelector("#em");
+    em.addEventListener('keypress', ClearMessage);
+
+    let ps = document.querySelector("#ps");
+    ps.addEventListener('keypress', ClearMessage);
+
+    let cps = document.querySelector("#cps");
+    cps.addEventListener('keypress', ClearMessage);
+
+</script>
